@@ -2,14 +2,14 @@ import type { PageProps } from "@/types";
 
 export const home: PageProps = {
     title: "Ste Rose - SRE and Leadership",
-    description: "Site Reliability and Platform specialist, wrangling code and drinking coffee.",
+    description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries.",
     url: "home",
 };
 
 
 export const about: PageProps = {
     title: "About - Ste Rose",
-    description: "Get to know Steve - engineer, tinkerer, and perpetual learner.",
+    description: "Get to know Ste - engineer, tinkerer, and perpetual learner.",
     url: "home",
 };
 

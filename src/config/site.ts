@@ -2,7 +2,7 @@ import type { Site } from "@/types";
 
 export const site: Site = {
     title: "Ste Rose",
-    description: "Site Reliability, coffee enthusiasm, and occasional debugger of life's mysteries",
+    description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries",
     author: "Ste Rose",
     creator: "@sterose",
     url: "http://localhost:4321",
