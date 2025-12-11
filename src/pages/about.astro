@@ -1,0 +1,164 @@
+---
+import BaseLayout from '@/layouts/Layout.astro'
+import { about } from '@/config/page'
+import { SocialLinks } from '@/config/site'
+import { Icon } from 'astro-icon/components'
+import NewsletterSignup from '@/components/NewsletterSignup.astro'
+
+const expertise = [
+	{
+		icon: 'mdi:code-braces',
+		title: 'Engineering Leadership',
+		description: 'I build and lead cross-region SRE teams, set clear reliability goals, and align platform roadmaps with product and risk.',
+	},
+	{
+		icon: 'mdi:api',
+		title: 'Platform Architecture',
+		description: 'Design and evolve Cloud and Kubernetes platforms, messaging and data layers that can safely absorb traffic spikes and change.',
+	},
+	{
+		icon: 'mdi:pencil',
+		title: 'Observability',
+		description: 'I turn “the system seems fine” into measurable promises using telemetry, monitoring and metrics.',
+	},
+	{
+		icon: 'mdi:open-source-initiative',
+		title: 'Open Source Advocate',
+		description: 'Active contributor and maintainer. I believe the best code is shared code.',
+	},
+]
+
+const topics = [
+	'AI Ops',
+	'Internal Developer Platforms',
+	'DevSecOps',
+	'Distributed Systems',
+	'FinOps Frameworks',
+	'Kubernetes',
+	'DevEx',
+	'Multi-Cloud',
+]
+---
+
+<BaseLayout {...about}>
+	<main class="app-container pt-32 pb-20">
+		<div class="space-y-16">
+			<!-- Header Section -->
+			<header class="space-y-6">
+				<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+					About Ste
+				</h1>
+				<p class="text-xl md:text-2xl text-secondary dark:text-secondary-dark max-w-3xl leading-relaxed">
+					Hi! I'm Ste Rose, a reliability-focused engineering leader specialising in AWS, Kubernetes, and large-scale messaging and data platforms. Over the last decade and a half I’ve led cross-region SRE teams, major cloud migrations, and FinOps initiatives that significantly reduced infrastructure spend while improving resilience.
+				</p>
+			</header>
+
+			<!-- Main Content -->
+			<div class="grid lg:grid-cols-3 gap-12">
+				<!-- Main Column -->
+				<div class="lg:col-span-2 space-y-12">
+					<!-- Bio Section -->
+					<section class="space-y-4">
+						<h2 class="text-3xl font-bold">Where it Started</h2>
+						<div class="prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
+							<p>My career started with FreeBSD servers, pager alerts, and a lot of time in the terminal figuring out why services were misbehaving. It was a crash course in systems thinking: logs, metrics, weird edge cases, and the very real cost of downtime.</p>
+							<p>As the stack moved to AWS and modern tooling, I moved with it—building out platforms, introducing infrastructure as code, and pushing for SLOs and observability so we could make decisions based on signals, not gut feel.</p>
+							<p>Today I lead SRE and Platform Engineering teams, balancing reliability, performance, and cost. The tools have changed since those early FreeBSD days, but the goal hasn’t: keep systems boring, predictable, and ready for whatever traffic hits them.</p>
+						</div>
+					</section>
+
+					<!-- Expertise Section -->
+					<section class="space-y-6">
+						<h2 class="text-3xl font-bold">What I Bring to the Table</h2>
+						<div class="grid md:grid-cols-2 gap-6">
+							{expertise.map((skill) => (
+								<div class="p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark">
+									<div class="flex items-start gap-4">
+										<div class="p-3 rounded-xl bg-primary/10 dark:bg-primary-dark/10">
+											<Icon name={skill.icon} class="w-6 h-6 text-primary dark:text-primary-dark" aria-hidden="true" />
+										</div>
+										<div class="space-y-2">
+											<h3 class="text-xl font-semibold">{skill.title}</h3>
+											<p class="text-secondary dark:text-secondary-dark">
+												{skill.description}
+											</p>
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</section>
+
+					<!-- Topics I Write About -->
+					<section class="space-y-4">
+						<h2 class="text-3xl font-bold">My Favorite Tech Topics</h2>
+						<div class="flex flex-wrap gap-3">
+							{topics.map((tag) => (
+								<span class="px-4 py-2 rounded-full bg-primary/10 dark:bg-primary-dark/10 text-primary dark:text-primary-dark border border-primary/20 dark:border-primary-dark/20">
+									{tag}
+								</span>
+							))}
+						</div>
+					</section>
+				</div>
+
+				<!-- Sidebar -->
+				<aside class="space-y-8">
+					<!-- Contact Card -->
+					<div class="p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark sticky top-28">
+						<div class="space-y-6">
+							<h3 class="text-2xl font-bold">Get in Touch</h3>
+							
+							<!-- Social Links -->
+							<nav aria-label="Social media links" class="space-y-3">
+								{SocialLinks.map((link) => (
+									<a
+										href={link.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="flex items-center gap-3 p-3 rounded-xl hover:bg-primary/5 dark:hover:bg-primary-dark/5 transition-colors group"
+										aria-label={`Visit my ${link.name} profile`}
+									>
+										<Icon 
+											name={
+												link.icon ?? (
+													link.name === 'GitHub' ? 'mdi:github' :
+													link.name === 'LinkedIn' ? 'mdi:linkedin' :
+													link.name.includes('Twitter') || link.name.includes('X') ? 'mdi:twitter' :
+													link.name === 'Instagram' ? 'mdi:instagram' :
+													'mdi:web'
+												)
+											}
+											class="w-5 h-5 text-secondary dark:text-secondary-dark group-hover:text-primary dark:group-hover:text-primary-dark transition-colors"
+											aria-hidden="true"
+										/>
+										<span class="text-secondary dark:text-secondary-dark group-hover:text-primary dark:group-hover:text-primary-dark transition-colors">
+											{link.name}
+										</span>
+									</a>
+								))}
+							</nav>
+
+							<!-- Email Button -->
+							<a
+								href="mailto:hello@sterose.io"
+								class="btn-primary w-full justify-center"
+								aria-label="Send me an email"
+							>
+								<Icon name="mdi:email" class="w-5 h-5" aria-hidden="true" />
+								<span>Send Email</span>
+							</a>
+						</div>
+					</div>
+				</aside>
+			</div>
+
+			<!-- Newsletter Section -->
+			<section class="pt-12 border-t border-border dark:border-border-dark">
+				<div class="max-w-3xl mx-auto">
+					<NewsletterSignup />
+				</div>
+			</section>
+		</div>
+	</main>
+</BaseLayout>
