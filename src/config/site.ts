@@ -40,24 +40,19 @@ export const WebsiteLinks = [
 ]
 
 export const SocialLinks = [
-    {
-        name: 'GitHub',
-        url: 'https://github.com/steroseio',
-        icon: 'mdi:github',
-    },
-    {
-        name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/steroseio/',
-        icon: 'mdi:linkedin',
-    },
-    {
-        name: 'X / Twitter',
-        url: 'https://twitter.com/steroseio',
-        icon: 'mdi:twitter',
-    },
-    {
-        name: 'Mastodon',
-        url: 'https://mastodon.social/@steroseio',
-        icon: 'mdi:mastodon',
-    },
+	{
+		name: 'LinkedIn',
+		url: 'https://www.linkedin.com/in/steroseio/',
+		icon: 'mdi:linkedin',
+	},
+	{
+		name: 'GitHub',
+		url: 'https://github.com/steroseio',
+		icon: 'mdi:github',
+	},
+	{
+		name: 'X / Twitter',
+		url: 'https://twitter.com/steroseio',
+		icon: 'mdi:twitter',
+	},
 ]
