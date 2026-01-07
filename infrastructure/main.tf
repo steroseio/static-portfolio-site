@@ -9,7 +9,7 @@ locals {
 
 module "site_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 4.1"
+  version = "~> 5.9"
 
   bucket = var.domain_name
 
