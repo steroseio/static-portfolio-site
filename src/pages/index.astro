@@ -1,0 +1,214 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { site, SocialLinks } from "@/config/site";
+import { home } from "@/config/page";
+import { Icon } from "astro-icon/components";
+import BlogCard from "@/components/BlogCard.astro";
+import PeacockLight from "@/assets/logos/peacock_light.svg";
+import PeacockDark from "@/assets/logos/peacock_dark.svg";
+import NBCLogo from "@/assets/logos/nbcu.svg";
+import SkyLogo from "@/assets/logos/sky.svg";
+import ShowmaxLogo from "@/assets/logos/showmax.svg";
+import GoDaddyLogo from "@/assets/logos/godaddy.svg";
+import OttRegLogo from "@/assets/logos/123reg.svg";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+const posts = allPosts
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const partnerLogos = [
+	{ name: 'Peacock', light: PeacockLight, dark: PeacockDark },
+	{ name: 'Comcast', component: NBCLogo },
+	{ name: 'Sky', component: SkyLogo },
+	{ name: 'Showmax', component: ShowmaxLogo },
+	{ name: 'GoDaddy', component: GoDaddyLogo },
+	{ name: '123-reg', component: OttRegLogo },
+];
+---
+
+<Layout
+	title={home.title}
+	description={home.description}
+	url={home.url}
+	image={home.url}
+>
+	<!-- Hero Section -->
+	<main
+		class="app-container flex flex-col gap-8 justify-center pt-40 md:pt-48 pb-0 md:pb-0 relative min-h-[75vh]"
+	>
+		<div class="space-y-3 animate-fade-in">
+			<p class="text-lg md:text-xl text-secondary dark:text-secondary-dark">👋 Hey there! I'm</p>
+			<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground dark:text-foreground-dark">
+				Steve Rose
+			</h1>
+		</div>
+		<p class="text-lg md:text-xl max-w-2xl leading-relaxed text-secondary dark:text-secondary-dark">
+			Platform & SRE Leader driving Reliability, Performance and Automation on a Global scale. Builder of Teams and Systems that stay calm under load. ☕️✨
+		</p>
+		<div class="flex flex-wrap gap-4 pt-2">
+			<a
+				class="btn-primary inline-flex items-center gap-2"
+				href="https://calendly.com/steroseio/30min"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Book a 30-minute introductory call"
+			>
+				Book a 30-min Intro
+				<Icon height={18} name="mdi:calendar-clock" aria-hidden="true" />
+			</a>
+			<a
+				class="btn-secondary inline-flex items-center gap-2"
+				href="/about"
+				aria-label="Read more about Ste Rose"
+			>
+				Learn More About Me
+				<Icon size={18} name="mdi:arrow-right" aria-hidden="true" />
+			</a>
+		</div>
+		<nav aria-label="Social media links" class="flex flex-wrap gap-4 pt-4 border-t border-border/30 dark:border-border-dark/30 mt-4">
+			{
+				SocialLinks.map((link) => (
+					<a
+						class="inline-flex items-center gap-2 font-medium text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors duration-150"
+						href={link.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`Visit Ste Rose on ${link.name}`}
+					>
+						{link.icon && <Icon name={link.icon} class="w-[22px] h-[22px]" aria-hidden="true" />}<span>{link.name}</span>
+					</a>
+				))
+			}
+		</nav>
+	</main>
+
+	<!-- What I Do Section -->
+	<section class="app-container py-0 pb-16" aria-labelledby="services-heading">
+		<div class="space-y-8">
+			<div class="space-y-3">
+				<h2 id="services-heading" class="section-title">What I Do</h2>
+				<p class="text-lg text-secondary dark:text-secondary-dark max-w-3xl">
+					For the last decade-and-a-half I’ve worked on big-name US and European platforms, helping teams ship faster <span class="italic">and</span> sleep better. Whether you need SRE leadership, platform strategy, or hands-on technical implementation, I bring deep experience in reliability, automation, and modern cloud platforms.
+				</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="p-6 rounded-lg border border-border dark:border-border-dark bg-surface dark:bg-surface-dark">
+					<Icon name="mdi:handshake" class="w-8 h-8 mb-4 text-primary dark:text-primary-dark" aria-hidden="true" />
+					<h3 class="text-xl font-semibold mb-3">Technical Leadership</h3>
+					<p class="text-secondary dark:text-secondary-dark leading-relaxed">
+						I lead teams, shape on-call and incident practices, and align engineering work with business risk and reliability goals.
+					</p>
+				</div>
+				<div class="p-6 rounded-lg border border-border dark:border-border-dark bg-surface dark:bg-surface-dark">
+					<Icon name="mdi:crane" class="w-8 h-8 mb-4 text-primary dark:text-primary-dark" aria-hidden="true" />
+					<h3 class="text-xl font-semibold mb-3">Platform Engineering</h3>
+					<p class="text-secondary dark:text-secondary-dark leading-relaxed">
+						I thrive in the design and build of Cloud and Kubernetes platforms, CI/CD pipelines, and shared services that product teams can rely on.
+					</p>
+				</div>
+				<div class="p-6 rounded-lg border border-border dark:border-border-dark bg-surface dark:bg-surface-dark">
+					<Icon name="mdi:bell-notification" class="w-8 h-8 mb-4 text-primary dark:text-primary-dark" aria-hidden="true" />
+					<h3 class="text-xl font-semibold mb-3">System Accountability</h3>
+					<p class="text-secondary dark:text-secondary-dark leading-relaxed">
+						I define SLOs, build observability, and wire up alerting and synthetic checks so production behaviour is measurable, predictable, and owned.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Who I've Worked With -->
+	<section class="app-container py-16" aria-labelledby="clients-heading">
+		<div class="space-y-6">
+			<div class="space-y-3">
+				<h2 id="clients-heading" class="section-title">Who I've Worked With</h2>
+				<p class="text-lg text-secondary dark:text-secondary-dark max-w-3xl">
+					Teams across media, streaming, and hosting trust me to scale their platforms and keep customer and developer experiences fast and reliable.
+				</p>
+			</div>
+			<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+			{
+					partnerLogos.map((logo) => {
+						const LightLogo = logo.light ?? logo.component;
+						const DarkLogo = logo.dark;
+						return (
+							<div class="flex items-center justify-center rounded-2xl border border-border dark:border-border-dark bg-surface/80 dark:bg-surface-dark/80 px-4 py-6 shadow-sm">
+								{
+									LightLogo ? (
+										DarkLogo ? (
+											<>
+												<LightLogo class="h-8 md:h-10 w-auto text-secondary dark:hidden" aria-label={`${logo.name} logo`} />
+												<DarkLogo class="h-8 md:h-10 w-auto text-secondary hidden dark:block" aria-label={`${logo.name} logo`} />
+											</>
+										) : (
+											<LightLogo class="h-8 md:h-10 w-auto text-secondary dark:text-secondary-dark" aria-label={`${logo.name} logo`} />
+										)
+									) : (
+										<span class="text-base md:text-lg font-semibold tracking-wide text-secondary dark:text-secondary-dark uppercase">
+											{logo.name}
+										</span>
+									)
+								}
+							</div>
+						);
+					})
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Recent Posts Section -->
+	<section class="app-container py-16" aria-labelledby="recent-posts-heading">
+		<div class="space-y-8">
+			<div class="space-y-3">
+				<h2 id="recent-posts-heading" class="section-title">Recent Posts</h2>
+				<p class="text-lg text-secondary dark:text-secondary-dark max-w-2xl">
+					Practical guides, hard-won lessons, and occasional rants about web development.
+				</p>
+			</div>
+			<div class="posts-grid-container">
+				{posts.map((post) => <BlogCard post={post} />)}
+			</div>
+			<div class="flex justify-start pt-4">
+				<a class="btn-secondary inline-flex items-center gap-2" href="/blog" aria-label="View all blog posts">
+					View All Posts
+					<Icon size={18} name="mdi:arrow-right" aria-hidden="true" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="app-container py-16 pb-24">
+		<div class="p-8 md:p-12 rounded-lg border border-border dark:border-border-dark bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary-dark/5 dark:to-accent-dark/5">
+			<div class="max-w-3xl">
+				<h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
+				<p class="text-lg text-secondary dark:text-secondary-dark leading-relaxed mb-6">
+					I’m relocating to California and seeking permanent or contract roles where reliability really matters. If your platform needs to stay fast and predictable when things get busy, let’s talk.
+				</p>
+				<div class="flex flex-wrap gap-3">
+					<a
+						class="btn-primary inline-flex items-center gap-2"
+						href="/resume_steve_rose_2026.pdf"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Download Steve Rose's résumé (PDF)"
+					>
+						Download Résumé
+						<Icon height={18} name="mdi:download" aria-hidden="true" />
+					</a>
+					<a
+						class="btn-secondary inline-flex items-center gap-2"
+						href="mailto:hello@sterose.io"
+						aria-label="Email Ste Rose at hello@sterose.io"
+					>
+						Email Me
+						<Icon height={18} name="mdi:email" aria-hidden="true" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
