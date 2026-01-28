@@ -1,13 +1,13 @@
 variable "aws_region" {
   description = "AWS region to deploy the infrastructure."
   type        = string
-  default     = "eu-west-1"
+  default     = "us-east-1"
 }
 
-variable "domain_name" {
-  description = "Primary domain name used for the static site bucket."
+variable "site_bucket_name" {
+  description = "Name of the private S3 bucket that stores the built static site."
   type        = string
-  default     = "sterose.io"
+  default     = "steroseio-static-site"
 }
 
 variable "tags" {

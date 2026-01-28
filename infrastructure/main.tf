@@ -1,7 +1,7 @@
 locals {
   common_tags = merge(
     {
-      TF_Managed = "True"
+      tf_managed = "true"
     },
     var.tags,
   )
@@ -11,7 +11,7 @@ module "site_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 5.9"
 
-  bucket = var.domain_name
+  bucket = var.site_bucket_name
 
   acl                            = "private"
   force_destroy                  = false
@@ -33,11 +33,6 @@ module "site_bucket" {
 
   versioning = {
     status = true
-  }
-
-  website = {
-    index_document = "index.html"
-    error_document = "404.html"
   }
 
   tags = local.common_tags
