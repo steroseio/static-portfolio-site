@@ -10,6 +10,12 @@ variable "site_bucket_name" {
   default     = "steroseio-static-site"
 }
 
+variable "project_name" {
+  description = "Identifier used when naming CloudFront and other shared resources."
+  type        = string
+  default     = "steroseio-portfolio"
+}
+
 variable "tags" {
   description = "Additional tags to apply to all resources."
   type        = map(string)
