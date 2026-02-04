@@ -18,16 +18,8 @@ export const WebsiteLinks = [
 		url: '/blog',
 	},
 	{
-		name: 'Projects',
-		url: '/projects',
-	},
-	{
-		name: 'Hire Me',
-		url: '/hire',
-	},
-	{
-		name: 'Uses',
-		url: '/uses',
+		name: 'Résumé',
+		url: '/resume_steve_rose_2026.pdf',
 	},
 	{
 		name: 'Now',
