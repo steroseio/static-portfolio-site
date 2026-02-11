@@ -18,8 +18,8 @@ import LogoSVG from '../assets/logo.svg'
 						<NavbarLink
 							class="text-lg"
 							href={link.url}
-							target={link.url.charAt(0) === 'h' ? '_blank' : '_self'}
-							rel={link.url.charAt(0) === 'h' ? 'noopener noreferrer' : undefined}
+							target={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? '_blank' : '_self'}
+							rel={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? 'noopener noreferrer' : undefined}
 						>
 							{link.name}
 						</NavbarLink>
@@ -57,7 +57,12 @@ import LogoSVG from '../assets/logo.svg'
 				<nav class="flex flex-col h-full items-start gap-8 pt-16" aria-label="Mobile navigation">
 					{
 						WebsiteLinks.map((link) => (
-							<NavbarLink class="text-4xl font-light" href={link.url}>
+							<NavbarLink
+								class="text-4xl font-light"
+								href={link.url}
+								target={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? '_blank' : '_self'}
+								rel={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? 'noopener noreferrer' : undefined}
+							>
 								{link.name}
 							</NavbarLink>
 						))

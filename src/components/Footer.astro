@@ -29,8 +29,8 @@ const today = new Date()
 								<a
 									class="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition-colors duration-150 underline decoration-1 underline-offset-2 decoration-border dark:decoration-border-dark hover:decoration-primary dark:hover:decoration-primary-dark"
 									href={link.url}
-									target={link.url.charAt(0) === 'h' ? '_blank' : '_self'}
-									rel={link.url.charAt(0) === 'h' ? 'noopener noreferrer' : undefined}
+									target={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? '_blank' : '_self'}
+									rel={(link.url.startsWith('http') || link.url.endsWith('.pdf')) ? 'noopener noreferrer' : undefined}
 								>
 									{link.name}
 								</a>
