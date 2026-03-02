@@ -14,7 +14,7 @@ Assembly language was a breakthrough because it let humans speak in symbolic ins
 
 The pattern repeats: every time we climb a level of abstraction, we gain leverage — and lose *some* immediacy. That trade has always produced an emotional cocktail: *excitement* (look what we can build now) mixed with *resentment* (you’re making my hard-earned craft feel less relevant).
 
-A famous example of that vibe is the satirical essay **“Real Programmers Don’t Use Pascal”** — a tongue-in-cheek defence of “serious” low-level work, and a not-so-subtle jab at higher-level languages and the people who used them. It’s funny, but it’s also revealing: beneath the jokes is a real fear that abstraction means *dilution* — of skill, of control, of identity.
+A famous example of that vibe is the satirical essay **“Real Programmers Don’t Use Pascal”** — a tongue-in-cheek defense of “serious” low-level work, and a not-so-subtle jab at higher-level languages and the people who used them. It’s funny, but it’s also revealing: beneath the jokes is a real fear that abstraction means *dilution* — of skill, of control, of identity.
 
 ## Now the abstraction is wearing a face
 
@@ -26,7 +26,7 @@ And the more practical question: if we let AI do more of the *thinking-shaped* w
 
 ## The SRE-shaped version of the question
 
-SRE isn’t just writing code. It’s **operational taste**. It’s knowing when a metric is lying. It’s reading between the lines of a graph at 3am and recognising the difference between “we’re fine” and “we’re about to have a very bad morning.”
+SRE isn’t just writing code. It’s **operational taste**. It’s knowing when a metric is lying. It’s reading between the lines of a graph at 3am and recognizing the difference between “we’re fine” and “we’re about to have a very bad morning.”
 
 AI promises to reduce toil — *and it probably will*. But it also tempts us toward a world where the feedback loops get fuzzier:
 
