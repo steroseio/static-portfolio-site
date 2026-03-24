@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+
+const pageData = {
+	title: "Now - Ste Rose",
+	description: "What Steve is currently working on and focusing on right now.",
+	url: "https://www.sterose.io/now",
+	image: "https://www.sterose.io/og-image.png",
+}
+
+const currentDate = new Date().toLocaleDateString('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+})
+
+const projects = [
+	{
+		emoji: "🚀",
+		title: "GenAI Incident Companion",
+		description: "Investigating ways to turn raw metrics, logs and traces into a human-readable narritive to explain what is happening and why, and what to do next."
+	},
+	{
+		emoji: "📚",
+		title: "Kubernetes Resource Curator",
+		description: "I'm working on and testing a list of awesome Kubernetes tools and resources to support my workflow."
+	},
+]
+
+const currentFocusItems = [
+	"Post-deploy validation: run automated health checks after release and generate a concise AI summary of what changed and what to monitor.",
+	"Signal correlation across silos: stitch metrics, logs, traces, and events into one narrative — replacing ten dashboards and a 40-minute war room.",
+	"\“Explain the failure\” automation: convert raw errors into clear root-cause hypotheses and practical remediation steps for responders.",
+	"Predictive recommendations: move from “what happened?” to “what’s likely next?” with confidence levels and evidence attached."
+]
+
+const learningItems = [
+	"Golang (for when Python and Bash are failing me, or I am failing them)",
+	"Web3 and smart contracts (with a healthy dose of skepticism)",
+	"System design patterns for distributed systems",
+	"\"The Opposable Mind\" by Roger Martin — challenging our strategic approaches with integrative thinking and looking past the \'either/or\'"
+]
+
+const lifeItems = [
+	"Camping and Hiking — enjoying some of the wonderful scenery of California",
+	"I enjoy reading history novels, as close as we can get to time travel right now",
+	"Tinkering with Home Automation so I can save 30 seconds a day but spend 6 hours configuring it",
+]
+---
+
+<BaseLayout {...pageData}>
+	<main class="app-container pt-32 pb-20">
+		<div class="max-w-3xl space-y-12">
+			<!-- Header -->
+			<header class="space-y-6">
+				<div class="flex items-center gap-4">
+					<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+						What I'm Up To Now
+					</h1>
+					<div class="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 text-sm font-medium">
+						Active
+					</div>
+				</div>
+				<p class="text-xl text-secondary dark:text-secondary-dark leading-relaxed">
+					This is my <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary dark:text-primary-dark hover:underline">now page</a>, inspired by Derek Sivers. Consider it a snapshot of my current adventures in engineering, life, and the whatever inbetween.
+				</p>
+				<p class="text-sm text-secondary dark:text-secondary-dark">
+					Last updated: <time datetime={new Date().toISOString()}>{currentDate}</time>
+				</p>
+			</header>
+
+			<!-- Current Focus -->
+			<section class="space-y-6">
+				<h2 class="text-3xl font-bold flex items-center gap-3">
+					<div class="p-3 rounded-xl bg-primary/10 dark:bg-primary-dark/10">
+						<Icon name="mdi:target" class="w-6 h-6 text-primary dark:text-primary-dark" aria-hidden="true" />
+					</div>
+					Current Focus
+				</h2>
+				<div class="prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
+					<p>
+						Right now I’m hands-on with the AI-powered Observability pattern coming out of AWS re:Invent: using GitHub Actions as the control point, pulling real signals (metrics/logs/events) from Kubernetes tooling, then letting an AI agent explain failures, correlate what matters, and recommend next steps with traceability.
+					</p>
+					<p>
+						I’m particularly interested in how this shifts SRE from reactive triage to proactive deployment safety — fewer noisy alerts, faster diagnosis, and clearer decisions before production gets hurt.
+					</p>
+					<ul>
+						{currentFocusItems.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			</section>
+
+			<!-- Current Projects -->
+			<section class="space-y-6">
+				<h2 class="text-3xl font-bold flex items-center gap-3">
+					<div class="p-3 rounded-xl bg-accent/10 dark:bg-accent-dark/10">
+						<Icon name="mdi:hammer-wrench" class="w-6 h-6 text-accent dark:text-accent-dark" aria-hidden="true" />
+					</div>
+					Active Projects
+				</h2>
+				<ul class="space-y-4" role="list">
+					{projects.map((project) => (
+						<li class="p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark">
+							<div class="space-y-2">
+								<h3 class="text-xl font-semibold">{project.emoji} {project.title}</h3>
+								<p class="text-secondary dark:text-secondary-dark leading-relaxed">
+									{project.description}
+								</p>
+							</div>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<!-- Learning -->
+			<section class="space-y-6">
+				<h2 class="text-3xl font-bold flex items-center gap-3">
+					<div class="p-3 rounded-xl bg-primary/10 dark:bg-primary-dark/10">
+						<Icon name="mdi:school" class="w-6 h-6 text-primary dark:text-primary-dark" aria-hidden="true" />
+					</div>
+					Currently Learning or Reading
+				</h2>
+				<div class="prose prose-lg dark:prose-invert prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
+					<ul>
+						{learningItems.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			</section>
+
+			<!-- Life -->
+			<section class="space-y-6">
+				<h2 class="text-3xl font-bold flex items-center gap-3">
+					<div class="p-3 rounded-xl bg-accent/10 dark:bg-accent-dark/10">
+						<Icon name="mdi:heart" class="w-6 h-6 text-accent dark:text-accent-dark" aria-hidden="true" />
+					</div>
+					Life Outside the "Five Nines" of Reliability
+				</h2>
+				<div class="prose prose-lg dark:prose-invert prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
+					<p>
+						When I manage to switch off from Engineering and Leadership (rare, but it happens), you'll find me:
+					</p>
+					<ul>
+						{lifeItems.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			</section>
+
+			<!-- Footer CTA -->
+			<footer class="pt-12 border-t border-border dark:border-border-dark">
+				<div class="p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark text-center space-y-4">
+					<p class="text-secondary dark:text-secondary-dark">
+						Want to follow along with my adventures? Check out my blog or reach out.
+					</p>
+					<div class="flex gap-3 justify-center">
+						<a href="/blog" class="btn-secondary">
+							<Icon name="mdi:post" class="w-5 h-5" aria-hidden="true" />
+							<span>Read Blog</span>
+						</a>
+						<a href="/about" class="btn-primary">
+							<Icon name="mdi:email" class="w-5 h-5" aria-hidden="true" />
+							<span>Get in Touch</span>
+						</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</main>
+</BaseLayout>
