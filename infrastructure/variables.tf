@@ -16,6 +16,12 @@ variable "project_name" {
   default     = "steroseio-portfolio"
 }
 
+variable "domain_name" {
+  description = "Apex domain name that Route53 will manage (e.g. example.com)."
+  type        = string
+  default     = "sterose.io"
+}
+
 variable "tags" {
   description = "Additional tags to apply to all resources."
   type        = map(string)

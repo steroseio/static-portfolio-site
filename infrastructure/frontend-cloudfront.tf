@@ -10,6 +10,7 @@ resource "aws_cloudfront_distribution" "site" {
   enabled             = true
   comment             = "${var.project_name} static site"
   default_root_object = "index.html"
+  aliases             = [var.domain_name, "www.${var.domain_name}"]
 
   origin {
     domain_name = module.site_bucket.s3_bucket_bucket_regional_domain_name
@@ -52,8 +53,9 @@ resource "aws_cloudfront_distribution" "site" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
-    minimum_protocol_version       = "TLSv1.2_2021"
+    acm_certificate_arn      = aws_acm_certificate_validation.site.certificate_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   tags = local.common_tags
