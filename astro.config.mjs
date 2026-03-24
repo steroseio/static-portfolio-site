@@ -9,6 +9,8 @@ import icon from 'astro-icon';
 import serviceWorker from 'astrojs-service-worker';
 import sitemap from '@astrojs/sitemap';
 
+const siteUrl = process.env.SITE_URL || process.env.PUBLIC_SITE_URL || 'https://www.sterose.io';
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [
@@ -28,7 +30,7 @@ export default defineConfig({
 		rehypePlugins: [rehypeFigureTitle, rehypeAccessibleEmojis],
     },
 
-    site: 'http://localhost:4321',
+    site: siteUrl,
 
     vite: {
         plugins: [tailwindcss()],
