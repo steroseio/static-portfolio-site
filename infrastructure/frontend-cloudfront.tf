@@ -27,6 +27,7 @@ resource "aws_cloudfront_distribution" "site" {
 
     cache_policy_id          = data.aws_cloudfront_cache_policy.caching_optimized.id
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.simple_s3.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security_headers.id
     compress                 = true
   }
 
@@ -67,4 +68,8 @@ data "aws_cloudfront_cache_policy" "caching_optimized" {
 
 data "aws_cloudfront_origin_request_policy" "simple_s3" {
   name = "Managed-CORS-S3Origin"
+}
+
+data "aws_cloudfront_response_headers_policy" "security_headers" {
+  name = "Managed-SecurityHeadersPolicy"
 }
