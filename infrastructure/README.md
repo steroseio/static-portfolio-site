@@ -45,3 +45,10 @@ Once the backend is in place you can run `terraform apply` from the `infrastruct
 
 ## Cloudflare DNS
 The Cloudflare zone for `var.domain_name` must already exist. Terraform will create/maintain the apex and `www` records (CNAMEs pointing at CloudFront) and add the temporary CNAMEs that ACM needs for certificate validation. Remove or import any conflicting records in Cloudflare before applying so Terraform can manage them cleanly.
+
+## Counter Lambda Tests
+Run the visitor counter unit tests from the project root:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s infrastructure/lambda/counter/tests -p "test_*.py"
+```
