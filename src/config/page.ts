@@ -17,6 +17,7 @@ export const error404: PageProps = {
     title: "404 - Page Not Found",
     description: "Looks like this page got lost in the bytecode. Let's get you back on track!",
     url: "home",
+    noindex: true,
 };
 
 export const blog: PageProps = {

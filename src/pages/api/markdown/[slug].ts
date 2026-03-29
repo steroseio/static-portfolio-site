@@ -23,15 +23,23 @@ export async function GET({ params }: APIContext) {
     return new Response('Post not found', { status: 404 });
   }
 
+  const yamlString = (value: string) => JSON.stringify(value);
+  const yamlArray = (values: string[]) =>
+    `[${values.map((value) => JSON.stringify(value)).join(', ')}]`;
+
+  const postUrl = `${site.url}/blog/${slug}/`;
+  const tags = post.data.tags || [];
+  const tagsText = tags.length > 0 ? tags.join(', ') : 'None';
+
   const markdown = `---
-title: ${post.data.title}
-author: ${site.author}
-published: ${post.data.pubDate.toISOString()}
-updated: ${post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString()}
-category: ${post.data.category}
-tags: ${(post.data.tags || []).join(', ')}
-url: ${site.url}/blog/${slug}/
-license: CC-BY-4.0
+title: ${yamlString(post.data.title)}
+author: ${yamlString(site.author)}
+published: ${yamlString(post.data.pubDate.toISOString())}
+updated: ${yamlString(post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString())}
+category: ${yamlString(post.data.category)}
+tags: ${yamlArray(tags)}
+url: ${yamlString(postUrl)}
+license: ${yamlString('CC-BY-4.0')}
 ---
 
 # ${post.data.title}
@@ -39,7 +47,7 @@ license: CC-BY-4.0
 ${post.data.description}
 
 **Category:** ${post.data.category}  
-**Tags:** ${(post.data.tags || []).join(', ')}  
+**Tags:** ${tagsText}  
 **Published:** ${post.data.pubDate.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -53,7 +61,7 @@ ${post.body}
 ---
 
 **Source:** Steve Rose  
-**URL:** ${site.url}/blog/${slug}/  
+**URL:** ${postUrl}  
 **License:** CC-BY-4.0 - Attribution Required
 `;
 
