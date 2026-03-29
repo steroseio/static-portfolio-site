@@ -1,23 +1,28 @@
-import type { APIContext } from 'astro';
+import type { APIContext, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { site } from '@/config/site';
 
-export async function GET({ request }: APIContext) {
-  const url = new URL(request.url);
-  const slug = url.searchParams.get('slug');
-  
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blog = await getCollection('blog');
+
+  return blog.map((post) => ({
+    params: { slug: post.id.replace('.md', '') },
+  }));
+};
+
+export async function GET({ params }: APIContext) {
+  const slug = params.slug;
   if (!slug) {
     return new Response('Missing slug parameter', { status: 400 });
   }
 
   const blog = await getCollection('blog');
-  const post = blog.find(p => p.id.replace('.md', '') === slug);
+  const post = blog.find((item) => item.id.replace('.md', '') === slug);
 
   if (!post) {
     return new Response('Post not found', { status: 404 });
   }
 
-  // Create markdown-formatted content
   const markdown = `---
 title: ${post.data.title}
 author: ${site.author}
@@ -35,7 +40,11 @@ ${post.data.description}
 
 **Category:** ${post.data.category}  
 **Tags:** ${(post.data.tags || []).join(', ')}  
-**Published:** ${post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+**Published:** ${post.data.pubDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })}
 
 ---
 

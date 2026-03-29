@@ -5,8 +5,8 @@ import { Icon } from 'astro-icon/components'
 const pageData = {
 	title: "Now - Ste Rose",
 	description: "What Steve is currently working on and focusing on right now.",
-	url: "https://www.sterose.io/now",
-	image: "https://www.sterose.io/og-image.png",
+	url: "now",
+	image: "/og/home.png",
 }
 
 const currentDate = new Date().toLocaleDateString('en-US', {
@@ -19,12 +19,12 @@ const projects = [
 	{
 		emoji: "🚀",
 		title: "GenAI Incident Companion",
-		description: "Investigating ways to turn raw metrics, logs and traces into a human-readable narritive to explain what is happening and why, and what to do next."
+		description: "Investigating ways to turn raw metrics, logs and traces into a human-readable narrative to explain what is happening and why, and what to do next."
 	},
 	{
 		emoji: "📚",
-		title: "Kubernetes Resource Curator",
-		description: "I'm working on and testing a list of awesome Kubernetes tools and resources to support my workflow."
+		title: "Unkubed — a Kubernetes Teaching Aide",
+		description: "I'm building a Flask-powered app that mirrors every Kubernetes UI action with the exact kubectl command, YAML, and troubleshooting context so learners and beginners can safely explore a cluster."
 	},
 ]
 
@@ -36,16 +36,22 @@ const currentFocusItems = [
 ]
 
 const learningItems = [
-	"Golang (for when Python and Bash are failing me, or I am failing them)",
-	"Web3 and smart contracts (with a healthy dose of skepticism)",
-	"System design patterns for distributed systems",
-	"\"The Opposable Mind\" by Roger Martin — challenging our strategic approaches with integrative thinking and looking past the \'either/or\'"
+	{ text: "Golang (for when Python and Bash are failing me, or I am failing them)" },
+	{ text: "System design patterns for distributed systems" },
+	{
+		bold: "Vibe Coding",
+		text: "by Gene Kim & Steve Yegge — why intent and flow increasingly matter, and how to position yourself in an increasingly AI-driven world",
+	},
+	{
+		bold: "The Opposable Mind",
+		text: "by Roger Martin — challenging our strategic approaches with integrative thinking and looking past the 'either/or'",
+	},
 ]
 
 const lifeItems = [
 	"Camping and Hiking — enjoying some of the wonderful scenery of California",
 	"I enjoy reading history novels, as close as we can get to time travel right now",
-	"Tinkering with Home Automation so I can save 30 seconds a day but spend 6 hours configuring it",
+	"Tinkering with home automation: spending 6 hours configuring things to save 15 seconds a day!",
 ]
 ---
 
@@ -63,7 +69,7 @@ const lifeItems = [
 					</div>
 				</div>
 				<p class="text-xl text-secondary dark:text-secondary-dark leading-relaxed">
-					This is my <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary dark:text-primary-dark hover:underline">now page</a>, inspired by Derek Sivers. Consider it a snapshot of my current adventures in engineering, life, and the whatever inbetween.
+					This is my <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary dark:text-primary-dark hover:underline">now page</a>, inspired by Derek Sivers. Consider it a snapshot of my current adventures in engineering, life, and the whatever in between.
 				</p>
 				<p class="text-sm text-secondary dark:text-secondary-dark">
 					Last updated: <time datetime={new Date().toISOString()}>{currentDate}</time>
@@ -80,10 +86,10 @@ const lifeItems = [
 				</h2>
 				<div class="prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
 					<p>
-						Right now I’m hands-on with the AI-powered Observability pattern coming out of AWS re:Invent: using GitHub Actions as the control point, pulling real signals (metrics/logs/events) from Kubernetes tooling, then letting an AI agent explain failures, correlate what matters, and recommend next steps with traceability.
+						Right now I’m hands-on with the AI-powered Observability pattern coming out of <strong>AWS re:Invent</strong> : pulling real signals (metrics, logs, events) from Kubernetes tooling, then letting an AI agent explain failures, correlate what matters, and recommend next steps with traceability.
 					</p>
 					<p>
-						I’m particularly interested in how this shifts SRE from reactive triage to proactive deployment safety — fewer noisy alerts, faster diagnosis, and clearer decisions before production gets hurt.
+						I’m particularly interested in how this shifts SRE teams susceptible to reactive triage into proactive deployment safety — fewer noisy alerts, faster diagnosis, and clearer decisions before production gets hurt.
 					</p>
 					<ul>
 						{currentFocusItems.map((item) => (
@@ -124,12 +130,12 @@ const lifeItems = [
 					Currently Learning or Reading
 				</h2>
 				<div class="prose prose-lg dark:prose-invert prose-a:text-primary dark:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
-					<ul>
-						{learningItems.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
+						<ul>
+							{learningItems.map((item) => (
+								<li>{item.bold ? <><strong>{item.bold}</strong> {item.text}</> : item.text}</li>
+							))}
+						</ul>
+					</div>
 			</section>
 
 			<!-- Life -->
