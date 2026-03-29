@@ -1,11 +1,17 @@
 import type { Site } from "@/types";
 
+const configuredSiteUrl = (
+	import.meta.env.PUBLIC_SITE_URL ??
+	import.meta.env.SITE_URL ??
+	'https://www.sterose.io'
+).replace(/\/$/, '');
+
 export const site: Site = {
-    title: "Ste Rose",
+    title: "Steve Rose",
     description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries",
-    author: "Ste Rose",
+    author: "Steve Rose",
     creator: "@sterose",
-    url: "http://localhost:4321",
+    url: configuredSiteUrl,
 };
 
 export const WebsiteLinks = [
