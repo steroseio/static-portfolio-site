@@ -25,10 +25,10 @@ resource "aws_cloudfront_distribution" "site" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
 
-    cache_policy_id          = data.aws_cloudfront_cache_policy.caching_optimized.id
-    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.simple_s3.id
+    cache_policy_id            = data.aws_cloudfront_cache_policy.caching_optimized.id
+    origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.simple_s3.id
     response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security_headers.id
-    compress                 = true
+    compress                   = true
   }
 
   custom_error_response {
