@@ -1,7 +1,7 @@
 ---
 title: "Generic Mitigations: the SRE Swiss Army Knife"
 description: "Tactics that buy you time and save you stress in the land of Engineering."
-pubDate: 'Feb 1 2026'
+pubDate: 'Jan 1 2026'
 category: 'Incident Response'
 tags: ['observability', 'sre', 'best-practices', 'incident-response']
 ---
