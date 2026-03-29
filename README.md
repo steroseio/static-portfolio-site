@@ -35,6 +35,13 @@ npm run preview
 
 Local dev runs on `http://localhost:4321`.
 
+## Environment Variables
+
+- `PUBLIC_SITE_URL` (or `SITE_URL`): canonical site URL used in metadata.
+- `PUBLIC_COUNTER_API_URL`: full counter endpoint URL used by footer counter (for example `https://abc123.execute-api.us-east-1.amazonaws.com/counter`).
+
+If `PUBLIC_COUNTER_API_URL` is not set, the footer counter is hidden.
+
 ## Make It Your Own
 
 If you want to adapt this repo as your own portfolio, these are the main files to change first:
@@ -47,7 +54,7 @@ If you want to adapt this repo as your own portfolio, these are the main files t
 6. [public/](public): favicons, resume PDF, robots/ai metadata.
 7. [src/styles/main.css](src/styles/main.css): design tokens and visual theme.
 
-Also set your production URL via `PUBLIC_SITE_URL` or `SITE_URL` when building/deploying.
+Also set your production URL via `PUBLIC_SITE_URL` or `SITE_URL` when building/deploying, and set `PUBLIC_COUNTER_API_URL` if you want the footer counter enabled.
 
 ## Project Layout
 

@@ -4,6 +4,7 @@ import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
 
 const today = new Date()
+const counterApiUrl = (import.meta.env.PUBLIC_COUNTER_API_URL ?? '').trim()
 ---
 
 <footer class="border-t border-border dark:border-border-dark mt-16">
@@ -93,9 +94,71 @@ const today = new Date()
 
 			<!-- Copyright -->
 			<div class="pt-8 border-t border-border/50 dark:border-border-dark/50">
-				<p class="text-xs text-foreground dark:text-foreground-dark text-center">
-						&copy; {today.getFullYear()} Steve Rose
-				</p>
+				<div class="text-center space-y-1">
+					<p class="text-xs text-foreground dark:text-foreground-dark">
+							&copy; {today.getFullYear()} Steve Rose
+					</p>
+					{
+						counterApiUrl && (
+								<p
+									id="footer-visitor-counter"
+									class="text-xs text-subtext-1 dark:text-subtext-0-dark"
+									data-counter-url={counterApiUrl}
+									aria-live="polite"
+								>
+								Visits: <span data-counter-value>--</span>
+							</p>
+						)
+					}
+				</div>
 			</div>
 	</div>
 </footer>
+
+<script>
+	const counterEl = document.querySelector('#footer-visitor-counter');
+
+	async function hydrateFooterCounter() {
+		if (!counterEl) return;
+
+		const counterUrl = counterEl.dataset.counterUrl?.trim();
+		const counterValueEl = counterEl.querySelector('[data-counter-value]');
+
+		if (!counterUrl || !counterValueEl) {
+			counterEl.remove();
+			return;
+		}
+
+		const controller = new AbortController();
+		const timeoutId = window.setTimeout(() => controller.abort(), 2500);
+
+		try {
+			const response = await fetch(counterUrl, {
+				method: 'GET',
+				headers: {
+					Accept: 'application/json',
+				},
+				signal: controller.signal,
+			});
+
+			if (!response.ok) {
+				throw new Error(`Counter request failed with status ${response.status}`);
+			}
+
+			const payload = await response.json();
+			const count = typeof payload?.count === 'number' ? payload.count : Number(payload?.count);
+
+			if (!Number.isFinite(count)) {
+				throw new Error('Counter payload did not include a numeric count value');
+			}
+
+			counterValueEl.textContent = new Intl.NumberFormat('en-US').format(count);
+		} catch {
+			counterValueEl.textContent = 'unavailable';
+		} finally {
+			window.clearTimeout(timeoutId);
+		}
+	}
+
+	void hydrateFooterCounter();
+</script>
