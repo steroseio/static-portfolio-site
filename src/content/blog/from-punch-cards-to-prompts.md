@@ -20,7 +20,7 @@ A famous example of that vibe is the satirical essay **“Real Programmers Don�
 
 Enter AI.
 
-For SREs, it’s hard not to feel the weight of it. AI can already produce working code in minutes, explain logs, summarise incidents, suggest remediations, and generate infrastructure snippets from a prompt. It’s the kind of capability that makes you stare at your carefully curated knowledge and wonder, *“Am I being upstreamed out of my own job?”*
+For SREs, it’s hard not to feel the weight of it. AI can already produce working code in minutes, explain logs, summarize incidents, suggest remediations, and generate infrastructure snippets from a prompt. It’s the kind of capability that makes you stare at your carefully curated knowledge and wonder, *“Am I being upstreamed out of my own job?”*
 
 And the more practical question: if we let AI do more of the *thinking-shaped* work, do we risk losing the deep systems intuition that SRE has traditionally relied on?
 
