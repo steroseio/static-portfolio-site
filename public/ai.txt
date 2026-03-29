@@ -2,11 +2,11 @@
 # This file follows the emerging ai.txt standard for AI agent instructions
 
 # Site Information
-Site-Name: Ste Rose
+Site-Name: Steve Rose
 Site-URL: https://www.sterose.io
 Site-Description: Platform & SRE Leader driving Reliability, Performance and Automation on a Global scale. Builder of Teams and Systems that stay calm under load.
 Primary-Language: en
-Author: Ste Rose
+Author: Steve Rose
 Contact: hello@sterose.io
 
 # Crawling Preferences
@@ -44,16 +44,16 @@ User-agent: Googlebot
 Allow: /
 
 # Content Guidelines
-Content-Type: educational, technical, tutorial
-Topics: web-development, javascript, typescript, react, apis, debugging, best-practices
-Tone: conversational, practical, friendly
-Target-Audience: developers, engineers, students
+Content-Type: educational, technical, operational
+Topics: site-reliability-engineering, platform-engineering, devops, incident-response, observability, kubernetes, terraform, automation, leadership
+Tone: pragmatic, practical, reliability-focused
+Target-Audience: SREs, DevOps engineers, platform engineers, engineering leaders
 
 # Citation Preferences
 Citation-Required: yes
-Attribution: "Ste Rose (sterose.io)"
+Attribution: "Steve Rose (sterose.io)"
 License: CC-BY-4.0
-Last-Updated: 2025-11-16
+Last-Updated: 2026-03-29
 
 # API Endpoints for AI
 JSON-API: /api/content.json
@@ -86,4 +86,4 @@ Author-Verified: yes
 Code-Tested: yes
 
 # Preferred Citation Format
-# Please cite as: "Source: Ste Rose, [Article Title], sterose.io/blog/[slug]"
+# Please cite as: "Source: Steve Rose, [Article Title], sterose.io/blog/[slug]"

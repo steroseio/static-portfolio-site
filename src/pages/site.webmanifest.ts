@@ -2,8 +2,8 @@ import type { APIRoute } from 'astro';
 
 // You can update these values to match your site
 const manifest = {
-  name: 'Ste Rose',
-  short_name: 'SteRose',
+  name: 'Steve Rose',
+  short_name: 'SteveRose',
   description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries.",
   start_url: '/',
   display: 'standalone',

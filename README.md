@@ -1,4 +1,4 @@
-# Ste Rose Portfolio Website
+# Steve Rose Portfolio Website
 
 This repository powers my personal portfolio and blog, built with Astro.
 

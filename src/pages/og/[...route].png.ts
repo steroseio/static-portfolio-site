@@ -55,7 +55,7 @@ export async function getStaticPaths() {
   paths.push({
     params: { route: 'home' },
     props: {
-      title: 'Ste Rose',
+      title: 'Steve Rose',
       description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries",
       pubDate: new Date(),
       category: 'Portfolio',
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   paths.push({
     params: { route: 'home/dark' },
     props: {
-      title: 'Ste Rose',
+      title: 'Steve Rose',
       description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries",
       pubDate: new Date(),
       category: 'Portfolio',
@@ -219,7 +219,7 @@ export const GET: APIRoute = async ({ props }) => {
                       color: themeColors.text,
                       letterSpacing: '0.04em',
                     },
-                    children: 'Ste Rose',
+                    children: 'Steve Rose',
                   },
                 },
                 {

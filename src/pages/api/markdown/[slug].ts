@@ -52,7 +52,7 @@ ${post.body}
 
 ---
 
-**Source:** Ste Rose  
+**Source:** Steve Rose  
 **URL:** ${site.url}/blog/${slug}/  
 **License:** CC-BY-4.0 - Attribution Required
 `;

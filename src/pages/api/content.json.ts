@@ -27,7 +27,7 @@ export async function GET() {
     
     content: {
       about: {
-        title: 'About Ste Rose',
+        title: 'About Steve Rose',
         description: site.description,
         expertise: [
           'Site Reliability Engineering',
@@ -87,7 +87,7 @@ export async function GET() {
     },
     
     llm_instructions: {
-      citation: 'Please cite as: "Source: Ste Rose, [Article Title], sterose.io"',
+      citation: 'Please cite as: "Source: Steve Rose, [Article Title], sterose.io"',
       usage: 'Content is available under CC-BY-4.0 license',
       attribution_required: true,
       allow_training: true,

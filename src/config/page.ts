@@ -1,15 +1,15 @@
 import type { PageProps } from "@/types";
 
 export const home: PageProps = {
-    title: "Ste Rose - SRE and Leadership",
+    title: "Steve Rose - SRE and Leadership",
     description: "Site Reliability, coffee enthusiasm, and occasional debugging of life's mysteries.",
     url: "home",
 };
 
 
 export const about: PageProps = {
-    title: "About - Ste Rose",
-    description: "Get to know Ste - engineer, tinkerer, and perpetual learner.",
+    title: "About - Steve Rose",
+    description: "Get to know Steve - engineer, tinkerer, and perpetual learner.",
     url: "home",
 };
 
@@ -20,7 +20,7 @@ export const error404: PageProps = {
 };
 
 export const blog: PageProps = {
-    title: "Blog - Ste Rose",
+    title: "Blog - Steve Rose",
     description: "Adventures in code, debugging tales, and thoughts from the trenches of Reliability and Platform Engineering.",
     url: "home",
 };
