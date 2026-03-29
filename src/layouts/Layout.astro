@@ -5,13 +5,13 @@ import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/Navigation.astro";
 import Footer from "@/components/Footer.astro";
 
-const { title, description, image, url } = Astro.props as PageProps;
+const pageProps = Astro.props as PageProps;
 ---
 
 <!doctype html>
 <html lang="en" class="h-full scroll-smooth">
 	<head>
-		<BaseHead title={title} description={description} image={image} url={url} />
+		<BaseHead {...pageProps} />
 	</head>
 	<body class="min-h-screen text-foreground bg-background font-light dark:text-foreground-dark dark:bg-background-dark transition-colors">
 		<a href="#main-content" class="skip-to-content sr-only">
