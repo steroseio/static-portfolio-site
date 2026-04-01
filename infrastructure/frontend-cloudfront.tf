@@ -6,6 +6,33 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_function" "rewrite_pretty_urls" {
+  name    = "${var.project_name}-rewrite-pretty-urls"
+  runtime = "cloudfront-js-2.0"
+  comment = "Rewrite clean URLs to index.html for static site routing."
+  publish = true
+
+  code = <<-EOT
+    function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+
+      // Leave API endpoints unchanged because some are extensionless files.
+      if (uri.startsWith('/api/')) {
+        return request;
+      }
+
+      if (uri.endsWith('/')) {
+        request.uri = uri + 'index.html';
+      } else if (!uri.includes('.')) {
+        request.uri = uri + '/index.html';
+      }
+
+      return request;
+    }
+  EOT
+}
+
 resource "aws_cloudfront_distribution" "site" {
   enabled             = true
   comment             = "${var.project_name} static site"
@@ -29,6 +56,11 @@ resource "aws_cloudfront_distribution" "site" {
     origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.simple_s3.id
     response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security_headers.id
     compress                   = true
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite_pretty_urls.arn
+    }
   }
 
   custom_error_response {
