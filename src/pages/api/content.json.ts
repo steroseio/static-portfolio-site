@@ -80,7 +80,7 @@ export async function GET() {
       main: [
         { label: 'Home', url: site.url },
         { label: 'Blog', url: `${site.url}/blog/` },
-        { label: 'Résumé', url: `${site.url}/resume_steve_rose_2026.pdf` },
+        { label: 'Résumé', url: `${site.url}/_steve_rose_resume_2026.pdf` },
         { label: 'Now', url: `${site.url}/now/` },
         { label: 'About', url: `${site.url}/about/` },
       ],

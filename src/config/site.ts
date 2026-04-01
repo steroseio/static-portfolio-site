@@ -25,7 +25,7 @@ export const WebsiteLinks = [
 	},
 	{
 		name: 'Résumé',
-		url: '/resume_steve_rose_2026.pdf',
+		url: '/_steve_rose_resume_2026.pdf',
 	},
 	{
 		name: 'Now',
