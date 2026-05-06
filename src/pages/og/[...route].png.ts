@@ -77,6 +77,35 @@ export async function getStaticPaths() {
   return [...paths, ...darkPaths];
 }
 
+let fontCache: { regular: ArrayBuffer; bold: ArrayBuffer } | null = null;
+
+async function getFonts(): Promise<{ regular: ArrayBuffer; bold: ArrayBuffer }> {
+  if (fontCache) return fontCache;
+
+  try {
+    const [regularBuffer, boldBuffer] = await Promise.all([
+      readFile(join(process.cwd(), 'public/fonts/NotoSans-Regular.ttf')),
+      readFile(join(process.cwd(), 'public/fonts/NotoSans-Bold.ttf')),
+    ]);
+
+    fontCache = {
+      regular: regularBuffer.buffer.slice(
+        regularBuffer.byteOffset,
+        regularBuffer.byteOffset + regularBuffer.byteLength
+      ) as ArrayBuffer,
+      bold: boldBuffer.buffer.slice(
+        boldBuffer.byteOffset,
+        boldBuffer.byteOffset + boldBuffer.byteLength
+      ) as ArrayBuffer,
+    };
+
+    return fontCache;
+  } catch (error) {
+    console.error('Font loading error:', error);
+    throw new Error('Unable to load font files');
+  }
+}
+
 export const GET: APIRoute = async ({ props }) => {
   const { title, description, category, theme } = props as {
     title: string;
@@ -87,31 +116,7 @@ export const GET: APIRoute = async ({ props }) => {
   };
   const themeColors = theme === 'dark' ? colors.dark : colors.light;
 
-  // Load Noto Sans fonts from public directory
-  let notoSansRegular: ArrayBuffer;
-  let notoSansBold: ArrayBuffer;
-  
-  try {
-    // Load from public/fonts directory
-    const regularBuffer = await readFile(
-      join(process.cwd(), 'public/fonts/NotoSans-Regular.ttf')
-    );
-    const boldBuffer = await readFile(
-      join(process.cwd(), 'public/fonts/NotoSans-Bold.ttf')
-    );
-    
-    notoSansRegular = regularBuffer.buffer.slice(
-      regularBuffer.byteOffset,
-      regularBuffer.byteOffset + regularBuffer.byteLength
-    ) as ArrayBuffer;
-    notoSansBold = boldBuffer.buffer.slice(
-      boldBuffer.byteOffset,
-      boldBuffer.byteOffset + boldBuffer.byteLength
-    ) as ArrayBuffer;
-  } catch (error) {
-    console.error('Font loading error:', error);
-    throw new Error('Unable to load font files');
-  }
+  const { regular: notoSansRegular, bold: notoSansBold } = await getFonts();
 
   // Create the SVG markup using satori (cleaner, more modern look)
   const svg = await satori(
