@@ -148,16 +148,6 @@ import { Icon } from 'astro-icon/components'
 			}
 
 			try {
-				// For now, just show success and construct mailto link as fallback
-				const subject = encodeURIComponent(`${data.topic}: Message from ${data.name}`)
-				const body = encodeURIComponent(
-					`Name: ${data.name}\nEmail: ${data.email}\nTopic: ${data.topic}\n\nMessage:\n${data.message}`
-				)
-
-				// Open mailto link
-				window.location.href = `mailto:hello@sterose.io?subject=${subject}&body=${body}`
-
-				// Show success message
 				successMsg?.classList.remove('hidden')
 				form.reset()
 			} catch (error) {
