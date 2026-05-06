@@ -68,7 +68,7 @@ ${post.body}
   return new Response(markdown, {
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600',
+      'Cache-Control': 'public, max-age=86400',
       'Access-Control-Allow-Origin': '*',
     },
   });

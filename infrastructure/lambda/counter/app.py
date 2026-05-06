@@ -2,10 +2,18 @@ import json
 import os
 
 import boto3
+from botocore.config import Config
 from botocore.exceptions import BotoCoreError, ClientError
 
 
-dynamodb = boto3.client("dynamodb")
+dynamodb = boto3.client(
+    "dynamodb",
+    config=Config(
+        connect_timeout=3,
+        read_timeout=5,
+        retries={"max_attempts": 2, "mode": "standard"},
+    ),
+)
 table_name = os.environ["COUNTER_TABLE_NAME"]
 counter_pk = os.environ.get("COUNTER_PARTITION_KEY", "site-total")
 
