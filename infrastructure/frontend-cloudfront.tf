@@ -46,6 +46,24 @@ resource "aws_cloudfront_distribution" "site" {
     origin_access_control_id = aws_cloudfront_origin_access_control.site.id
   }
 
+  ordered_cache_behavior {
+    path_pattern           = "*.html"
+    target_origin_id       = "s3-site"
+    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+
+    cache_policy_id            = aws_cloudfront_cache_policy.html_short_ttl.id
+    origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.simple_s3.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security_headers.id
+    compress                   = true
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite_pretty_urls.arn
+    }
+  }
+
   default_cache_behavior {
     target_origin_id       = "s3-site"
     viewer_protocol_policy = "redirect-to-https"
@@ -104,4 +122,27 @@ data "aws_cloudfront_origin_request_policy" "simple_s3" {
 
 data "aws_cloudfront_response_headers_policy" "security_headers" {
   name = "Managed-SecurityHeadersPolicy"
+}
+
+resource "aws_cloudfront_cache_policy" "html_short_ttl" {
+  name    = "${var.project_name}-html-short-ttl"
+  comment = "Short TTL for HTML so deploys are visible within minutes"
+
+  min_ttl     = 0
+  default_ttl = 300
+  max_ttl     = 600
+
+  parameters_in_cache_key_and_forwarded_to_origin {
+    cookies_config {
+      cookie_behavior = "none"
+    }
+    headers_config {
+      header_behavior = "none"
+    }
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+    enable_accept_encoding_gzip   = true
+    enable_accept_encoding_brotli = true
+  }
 }
