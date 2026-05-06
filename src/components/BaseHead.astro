@@ -18,20 +18,24 @@ const normalizeOgRoute = (value?: string) => {
 };
 
 const getOgImage = () => {
-	if (!image) {
-		return new URL(`/og/${normalizeOgRoute(url)}.png`, site.url).toString();
-	}
+	try {
+		if (!image) {
+			return new URL(`/og/${normalizeOgRoute(url)}.png`, site.url).toString();
+		}
 
-	if (/^https?:\/\//i.test(image) || image.startsWith('/')) {
-		return new URL(image, site.url).toString();
-	}
+		if (/^https?:\/\//i.test(image) || image.startsWith('/')) {
+			return new URL(image, site.url).toString();
+		}
 
-	if (/\.(png|jpe?g|gif|webp|svg|avif)(\?|#|$)/i.test(image)) {
-		return new URL(`/${image.replace(/^\/+/, '')}`, site.url).toString();
-	}
+		if (/\.(png|jpe?g|gif|webp|svg|avif)(\?|#|$)/i.test(image)) {
+			return new URL(`/${image.replace(/^\/+/, '')}`, site.url).toString();
+		}
 
-	// Backward compatibility: treat non-file image values as OG route keys
-	return new URL(`/og/${normalizeOgRoute(image)}.png`, site.url).toString();
+		// Backward compatibility: treat non-file image values as OG route keys
+		return new URL(`/og/${normalizeOgRoute(image)}.png`, site.url).toString();
+	} catch {
+		return new URL('/og/home.png', site.url).toString();
+	}
 };
 
 const ogImage = getOgImage();
