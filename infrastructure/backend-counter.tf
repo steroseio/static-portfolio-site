@@ -107,7 +107,7 @@ resource "aws_apigatewayv2_api" "counter" {
       "https://www.${var.domain_name}",
       "http://localhost:4321",
     ]
-    max_age = 300
+    max_age = 86400
   }
 
   tags = local.common_tags
