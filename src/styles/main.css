@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Ensure variable fonts never block rendering */
+@font-face {
+	font-family: 'Inter Variable';
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono Variable';
+	font-display: swap;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
